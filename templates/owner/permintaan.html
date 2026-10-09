@@ -1,0 +1,186 @@
+{% extends 'layout.html' %}
+
+{% block title %}Permintaan{% endblock %}
+{% block judul %}Permintaan Bahan{% endblock %}
+
+{% block content %}
+
+<div class="card mb-4">
+
+    <div class="card-body">
+
+        <form method="POST">
+
+            <div class="row g-3">
+
+                <div class="col-12 col-md-3">
+
+                    <select
+                    name="supplier"
+                    class="form-select"
+                    required>
+
+                        <option value="">Pilih Supplier</option>
+
+                        {% for s in supplier %}
+
+                        <option value="{{ s[0] }}">
+                            {{ s[1] }}
+                        </option>
+
+                        {% endfor %}
+
+                    </select>
+
+                </div>
+
+                <div class="col-12 col-md-3">
+
+                    <select
+                    name="bahan"
+                    class="form-select"
+                    required>
+
+                        <option value="">Pilih Bahan</option>
+
+                        {% for b in bahan %}
+
+                        <option value="{{ b[0] }}">
+                            {{ b[1] }}
+                        </option>
+
+                        {% endfor %}
+
+                    </select>
+
+                </div>
+
+                <div class="col-12 col-md-3">
+
+                    <input
+                    type="number"
+                    name="jumlah"
+                    class="form-control"
+                    placeholder="Jumlah"
+                    required>
+
+                </div>
+
+                <div class="col-12 col-md-3">
+
+                    <input
+                    type="date"
+                    name="tanggal"
+                    class="form-control"
+                    required>
+
+                </div>
+
+                <div class="col-12 col-md-3">
+
+                    <input
+                    type="text"
+                    name="catatan"
+                    class="form-control"
+                    placeholder="Catatan">
+
+                </div>
+
+                <div class="col-md-12 mt-3">
+
+                    <button class="btn btn-danger">
+
+                        Kirim Permintaan
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<div class="card">
+
+    <div class="card-body">
+
+          <div class="table-responsive">
+
+            <table class="table table-hover">
+
+            <thead class="table-danger">
+
+                <tr>
+
+                    <th>ID</th>
+                    <th>Supplier</th>
+                    <th>Bahan</th>
+                    <th>Jumlah</th>
+                    <th>Tanggal</th>
+                    <th>Status</th>
+                    <th>Catatan</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+            {% for row in data %}
+
+                <tr>
+
+                    <td>{{ row[0] }}</td>
+
+                    <td>{{ row[1] }}</td>
+
+                    <td>{{ row[2] }}</td>
+
+                    <td>{{ row[3] }}</td>
+
+                    <td>{{ row[4] }}</td>
+
+                    <td>
+
+                        {% if row[5] == "Menunggu" %}
+
+                            <span class="badge bg-warning text-dark">
+                                Menunggu
+                            </span>
+
+                        {% elif row[5] == "Disetujui" %}
+
+                            <span class="badge bg-success">
+                                Disetujui
+                            </span>
+
+                        {% else %}
+
+                            <span class="badge bg-danger">
+                                Ditolak
+                            </span>
+
+                        {% endif %}
+
+                    </td>
+
+                    <td>{{ row[6] }}</td>
+
+                </tr>
+
+            {% endfor %}
+
+            </tbody>
+
+         </table>
+
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

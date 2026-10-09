@@ -1,0 +1,145 @@
+{% extends 'layout.html' %}
+
+{% block title %}Dashboard Owner{% endblock %}
+{% block judul %}Dashboard Owner{% endblock %}
+
+{% block content %}
+
+<h2 class="mb-4">
+    Selamat Datang, {{ session["nama"] }}
+</h2>
+
+<div class="row">
+
+    <div class="col-md-3 mb-4">
+
+        <div class="card border-0 shadow-sm text-center">
+
+            <div class="card-body">
+
+                <i class="bi bi-box-seam text-primary fs-1"></i>
+
+                <h5 class="mt-3">Total Bahan</h5>
+
+                <h2>{{ total_bahan }}</h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-3 mb-4">
+
+        <div class="card border-0 shadow-sm text-center">
+
+            <div class="card-body">
+
+                <i class="bi bi-truck text-warning fs-1"></i>
+
+                <h5 class="mt-3">Supplier</h5>
+
+                <h2>{{ total_supplier }}</h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-3 mb-4">
+
+        <div class="card border-0 shadow-sm text-center">
+
+            <div class="card-body">
+
+                <i class="bi bi-send-check text-success fs-1"></i>
+
+                <h5 class="mt-3">Permintaan</h5>
+
+                <h2>{{ permintaan }}</h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-3 mb-4">
+
+        <div class="card border-0 shadow-sm text-center">
+
+            <div class="card-body">
+
+                <i class="bi bi-exclamation-triangle-fill text-danger fs-1"></i>
+
+                <h5 class="mt-3">Stok Minimum</h5>
+
+                <h2 class="text-danger">
+
+                    {{ stok_minimum }}
+
+                </h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="card mt-3">
+
+    <div class="card-header bg-danger text-white">
+
+        Menu Cepat
+
+    </div>
+
+    <div class="card-body">
+
+        <a href="/monitoring" class="btn btn-outline-primary me-2 mb-2">
+            <i class="bi bi-bar-chart-line"></i>
+            Monitoring
+        </a>
+
+        <a href="/permintaan" class="btn btn-outline-warning me-2 mb-2">
+            <i class="bi bi-send"></i>
+            Permintaan
+        </a>
+
+        <a href="/laporan" class="btn btn-outline-success me-2 mb-2">
+            <i class="bi bi-file-earmark-text"></i>
+            Laporan
+        </a>
+
+    </div>
+
+</div>
+
+{% if stok_minimum > 0 %}
+
+<div class="alert alert-danger mt-4">
+
+    <i class="bi bi-exclamation-circle-fill"></i>
+
+    Terdapat <strong>{{ stok_minimum }}</strong> bahan baku yang stoknya telah mencapai batas minimum.
+
+    Segera lakukan permintaan ke supplier.
+
+</div>
+
+{% else %}
+
+<div class="alert alert-success mt-4">
+
+    <i class="bi bi-check-circle-fill"></i>
+
+    Seluruh stok bahan baku berada dalam kondisi aman.
+
+</div>
+
+{% endif %}
+
+{% endblock %}

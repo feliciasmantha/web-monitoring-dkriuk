@@ -1,0 +1,83 @@
+{% extends 'layout.html' %}
+
+{% block title %}Edit Supplier{% endblock %}
+{% block judul %}Edit Supplier{% endblock %}
+
+{% block content %}
+
+<div class="card">
+
+    <div class="card-body">
+
+        <form method="POST">
+
+            <div class="mb-3">
+
+                <label class="form-label">Nama Supplier</label>
+
+                <input
+                    type="text"
+                    name="nama_supplier"
+                    class="form-control"
+                    value="{{ data[1] }}"
+                    required>
+
+            </div>
+
+            <div class="mb-3">
+
+                <label class="form-label">Telepon</label>
+
+                <input
+                    type="text"
+                    name="telepon"
+                    class="form-control"
+                    value="{{ data[2] }}"
+                    required>
+
+            </div>
+
+            <div class="mb-3">
+
+                <label class="form-label">Alamat</label>
+
+                <textarea
+                    name="alamat"
+                    class="form-control"
+                    rows="3"
+                    required>{{ data[3] }}</textarea>
+
+            </div>
+
+            <div class="mb-3">
+
+                <label class="form-label">Email</label>
+
+                <input
+                    type="email"
+                    name="email"
+                    class="form-control"
+                    value="{{ data[4] }}"
+                    required>
+
+            </div>
+
+            <button class="btn btn-warning">
+
+                Update Supplier
+
+            </button>
+
+            <a href="/supplier" class="btn btn-secondary">
+
+                Kembali
+
+            </a>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

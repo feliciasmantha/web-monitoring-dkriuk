@@ -1,0 +1,103 @@
+{% extends 'layout.html' %}
+
+{% block title %}Laporan{% endblock %}
+{% block judul %}Laporan Stok{% endblock %}
+
+{% block content %}
+
+<div class="card">
+
+    <div class="card-body">
+
+        <div class="d-flex justify-content-between mb-3">
+
+            <h5 class="mb-0">
+                Laporan Monitoring Stok
+            </h5>
+
+         <a href="/download_laporan" class="btn btn-success">
+
+    <img
+    src="{{ url_for('static', filename='img/excel.png') }}"
+    width="22"
+    class="me-2">
+
+    Download Excel
+
+</a>
+
+        </div>
+
+        <div class="table-responsive">
+
+            <table class="table table-hover">
+
+            <thead class="table-danger">
+
+                <tr>
+
+                    <th>No</th>
+                    <th>Bahan</th>
+                    <th>Satuan</th>
+                    <th>Stok</th>
+                    <th>Minimum</th>
+                    <th>Masuk</th>
+                    <th>Keluar</th>
+                    <th>Status</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+            {% for row in data %}
+
+                <tr>
+
+                    <td>{{ loop.index }}</td>
+
+                    <td>{{ row[0] }}</td>
+
+                    <td>{{ row[1] }}</td>
+
+                    <td>{{ row[2] }}</td>
+
+                    <td>{{ row[3] }}</td>
+
+                    <td>{{ row[4] }}</td>
+
+                    <td>{{ row[5] }}</td>
+
+                    <td>
+
+                        {% if row[2] <= row[3] %}
+
+                            <span class="badge bg-danger">
+                                Minimum
+                            </span>
+
+                        {% else %}
+
+                            <span class="badge bg-success">
+                                Aman
+                            </span>
+
+                        {% endif %}
+
+                    </td>
+
+                </tr>
+
+            {% endfor %}
+
+            </tbody>
+
+              </table>
+
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

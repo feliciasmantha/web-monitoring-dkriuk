@@ -1,0 +1,124 @@
+{% extends 'layout.html' %}
+
+{% block title %}Supplier{% endblock %}
+{% block judul %}Data Supplier{% endblock %}
+
+{% block content %}
+
+<div class="card mb-4">
+    <div class="card-body">
+
+        <form method="POST">
+
+            <div class="row g-3">
+
+                <div class="col-12 col-md-3">
+                    <input
+                        type="text"
+                        name="nama_supplier"
+                        class="form-control"
+                        placeholder="Nama Supplier"
+                        required>
+                </div>
+
+                <div class="col-12 col-md-3">
+                    <input
+                        type="text"
+                        name="telepon"
+                        class="form-control"
+                        placeholder="Nomor Telepon"
+                        required>
+                </div>
+
+                <div class="col-12 col-md-3">
+                    <input
+                        type="text"
+                        name="alamat"
+                        class="form-control"
+                        placeholder="Alamat"
+                        required>
+                </div>
+
+                <div class="col-12 col-md-3">
+                    <input
+                        type="email"
+                        name="email"
+                        class="form-control"
+                        placeholder="Email Supplier"
+                        required>
+                </div>
+
+                <div class="col-12">
+                    <button type="submit" class="btn btn-danger w-100">
+                        Tambah Supplier
+                    </button>
+                </div>
+
+            </div>
+
+        </form>
+
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+
+        <div class="table-responsive">
+
+            <table class="table table-hover">
+
+                <thead class="table-danger">
+
+                    <tr>
+                        <th>ID</th>
+                        <th>Nama Supplier</th>
+                        <th>Telepon</th>
+                        <th>Alamat</th>
+                        <th>Email</th>
+                        <th width="180">Aksi</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                {% for row in data %}
+
+                    <tr>
+
+                        <td>{{ row[0] }}</td>
+                        <td>{{ row[1] }}</td>
+                        <td>{{ row[2] }}</td>
+                        <td>{{ row[3] }}</td>
+                        <td>{{ row[4] }}</td>
+
+                        <td>
+
+                            <a href="/edit_supplier/{{ row[0] }}"
+                               class="btn btn-warning btn-sm">
+                                Edit
+                            </a>
+
+                            <a href="/hapus_supplier/{{ row[0] }}"
+                               class="btn btn-danger btn-sm"
+                               onclick="return confirm('Yakin ingin menghapus supplier ini?')">
+                                Hapus
+                            </a>
+
+                        </td>
+
+                    </tr>
+
+                {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

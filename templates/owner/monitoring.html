@@ -1,0 +1,105 @@
+{% extends 'layout.html' %}
+
+{% block title %}Monitoring Stok{% endblock %}
+{% block judul %}Monitoring Stok{% endblock %}
+
+{% block content %}
+
+<div class="card">
+
+    <div class="card-body">
+
+        <input
+        id="search"
+        class="form-control mb-3"
+        placeholder="Cari bahan...">
+
+         <div class="table-responsive">
+
+            <table class="table table-hover">
+
+            <thead class="table-danger">
+
+                <tr>
+
+                    <th>ID</th>
+                    <th>Nama Bahan</th>
+                    <th>Satuan</th>
+                    <th>Stok</th>
+                    <th>Minimum</th>
+                    <th>Status</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+            {% for row in data %}
+
+                <tr>
+
+                    <td>{{ row[0] }}</td>
+
+                    <td>{{ row[1] }}</td>
+
+                    <td>{{ row[2] }}</td>
+
+                    <td>{{ row[3] }}</td>
+
+                    <td>{{ row[4] }}</td>
+
+                    <td>
+
+                        {% if row[5] == "Minimum" %}
+
+                            <span class="badge bg-danger">
+                                Stok Minimum
+                            </span>
+
+                        {% else %}
+
+                            <span class="badge bg-success">
+                                Aman
+                            </span>
+
+                        {% endif %}
+
+                    </td>
+
+                </tr>
+
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+document.getElementById("search").addEventListener("keyup", function(){
+
+    let filter = this.value.toLowerCase();
+
+    let rows = document.querySelectorAll("tbody tr");
+
+    rows.forEach(function(row){
+
+        row.style.display =
+        row.innerText.toLowerCase().includes(filter)
+        ? ""
+        : "none";
+
+    });
+
+});
+
+</script>
+
+{% endblock %}

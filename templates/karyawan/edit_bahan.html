@@ -1,0 +1,75 @@
+{% extends 'layout.html' %}
+
+{% block title %}Edit Bahan{% endblock %}
+
+{% block judul %}Edit Bahan{% endblock %}
+
+{% block content %}
+
+<div class="card">
+
+<div class="card-body">
+
+<form method="POST">
+
+<label>Nama Bahan</label>
+
+<input
+type="text"
+name="nama_bahan"
+value="{{data[1]}}"
+class="form-control">
+
+<br>
+
+<label>Satuan</label>
+
+<input
+type="text"
+name="satuan"
+value="{{data[2]}}"
+class="form-control">
+
+<br>
+
+<label>Stok</label>
+
+<input
+type="number"
+name="stok"
+value="{{data[3]}}"
+class="form-control">
+
+<br>
+
+<label>Stok Minimum</label>
+
+<input
+type="number"
+name="stok_minimum"
+value="{{data[4]}}"
+class="form-control">
+
+<br>
+
+<button class="btn btn-warning">
+
+Update
+
+</button>
+
+<a
+href="/bahan"
+class="btn btn-secondary">
+
+Kembali
+
+</a>
+
+</form>
+
+</div>
+
+</div>
+
+{% endblock %}

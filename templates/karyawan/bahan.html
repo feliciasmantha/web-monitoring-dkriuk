@@ -1,0 +1,126 @@
+{% extends 'layout.html' %}
+
+{% block title %}Bahan Baku{% endblock %}
+{% block judul %}Data Bahan Baku{% endblock %}
+
+{% block content %}
+
+<div class="card mb-4">
+    <div class="card-body">
+
+        <form method="POST">
+
+            <div class="row">
+
+                <div class="col-12 col-md-3">
+                    <input
+                        type="text"
+                        name="nama_bahan"
+                        class="form-control"
+                        placeholder="Nama Bahan"
+                        required>
+                </div>
+
+                <div class="col-12 col-md-3">
+                    <input
+                        type="text"
+                        name="satuan"
+                        class="form-control"
+                        placeholder="Satuan"
+                        required>
+                </div>
+
+                <div class="col-12 col-md-3">
+                    <input
+                        type="number"
+                        name="stok"
+                        class="form-control"
+                        placeholder="Stok"
+                        required>
+                </div>
+
+                <div class="col-12 col-md-3">
+                    <input
+                        type="number"
+                        name="stok_minimum"
+                        class="form-control"
+                        placeholder="Stok Minimum"
+                        required>
+                </div>
+
+                <div class="col-md-3">
+                    <button type="submit" class="btn btn-danger w-100">
+                        Tambah Bahan
+                    </button>
+                </div>
+
+            </div>
+
+        </form>
+
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+
+        <div class="table-responsive">
+
+            <table class="table table-hover">>
+
+            <thead class="table-danger">
+
+                <tr>
+
+                    <th>ID</th>
+                    <th>Nama Bahan</th>
+                    <th>Satuan</th>
+                    <th>Stok</th>
+                    <th>Stok Minimum</th>
+                    <th width="180">Aksi</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+            {% for row in data %}
+
+                <tr>
+
+                    <td>{{ row[0] }}</td>
+                    <td>{{ row[1] }}</td>
+                    <td>{{ row[2] }}</td>
+                    <td>{{ row[3] }}</td>
+                    <td>{{ row[4] }}</td>
+
+                    <td>
+
+                        <a href="/edit_bahan/{{ row[0] }}"
+                           class="btn btn-warning btn-sm">
+                            Edit
+                        </a>
+
+                        <a href="/hapus_bahan/{{ row[0] }}"
+                           class="btn btn-danger btn-sm"
+                           onclick="return confirm('Yakin ingin menghapus data ini?')">
+                            Hapus
+                        </a>
+
+                    </td>
+
+                </tr>
+
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,122 @@
+{% extends 'layout.html' %}
+
+{% block title %}Permintaan Masuk{% endblock %}
+{% block judul %}Permintaan Masuk{% endblock %}
+
+{% block content %}
+
+<div class="card">
+
+<div class="card-body">
+
+  <div class="table-responsive">
+
+            <table class="table table-hover">
+
+<thead class="table-danger">
+
+<tr>
+
+<th>ID</th>
+<th>Bahan</th>
+<th>Jumlah</th>
+<th>Tanggal</th>
+<th>Catatan</th>
+<th>Status</th>
+<th>Aksi</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for row in data %}
+
+<tr>
+
+<td>{{ row[0] }}</td>
+<td>{{ row[1] }}</td>
+<td>{{ row[2] }}</td>
+<td>{{ row[3] }}</td>
+<td>{{ row[5] }}</td>
+
+<td>
+
+{% if row[4]=="Menunggu" %}
+
+<span class="badge bg-warning text-dark">
+
+Menunggu
+
+</span>
+
+{% elif row[4]=="Disetujui" %}
+
+<span class="badge bg-success">
+
+Disetujui
+
+</span>
+
+{% else %}
+
+<span class="badge bg-danger">
+
+Ditolak
+
+</span>
+
+{% endif %}
+
+</td>
+
+<td>
+
+{% if row[4]=="Menunggu" %}
+
+<form method="POST">
+
+<input
+type="hidden"
+name="permintaan_id"
+value="{{ row[0] }}">
+
+<button
+name="status"
+value="Disetujui"
+class="btn btn-success btn-sm">
+
+Setujui
+
+</button>
+
+<button
+name="status"
+value="Ditolak"
+class="btn btn-danger btn-sm">
+
+Tolak
+
+</button>
+
+</form>
+
+{% endif %}
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+        </table>
+
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
